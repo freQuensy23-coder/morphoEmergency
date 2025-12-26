@@ -39,6 +39,7 @@ contract EmergencyVaultWrapper is Ownable2Step {
     }
 
     function setFeeConfig(address feeRecipient_, uint256 feeRate_, bool enabled) external onlyOwner {
+        require(feeRate_ < 5e16, "Fee rate too high. Max is 5%.");
         feeRecipient = feeRecipient_;
         feeRate = feeRate_;
         isFeeEnabled = enabled;
